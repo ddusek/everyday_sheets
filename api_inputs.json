@@ -1,0 +1,11 @@
+{
+    "reddit": {
+        "subreddits": [
+            {
+                "subreddit": "news",
+                "time_filter": "day",
+                "limit": 10
+            }
+        ]
+    }
+}

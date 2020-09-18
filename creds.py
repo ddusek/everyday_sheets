@@ -9,8 +9,7 @@ SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 
 
 class Creds:
-    """Shows basic usage of the Sheets API.
-    Prints values from a sample spreadsheet.
+    """Get creds for google sheets api.
     """
     def __init__(self):
         self.creds = None
