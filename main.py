@@ -1,18 +1,14 @@
 from __future__ import print_function
+from timeit import default_timer as timer
+from datetime import date
 from pprint import pprint
 from googleapiclient.discovery import build
 from creds import Creds
 from fetch import Fetch
-
-# If modifying these scopes, delete the file token.pickle.
-SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
-
-# The ID and range of a sample spreadsheet.
-SAMPLE_SPREADSHEET_ID = '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms'
-SAMPLE_RANGE_NAME = 'Class Data!A2:E'
-
+from spreadsheets import Spreadsheet
 
 if __name__ == '__main__':
+    main_start = timer()
     # Get google api credentials.
     my_creds = Creds()
 
@@ -21,16 +17,32 @@ if __name__ == '__main__':
 
     # Fetch data from all data sources defined in json file.
     fetcher = Fetch('api_inputs.json')
+
+    start = timer()
     data = fetcher.fetch_all()
+    print(f'data fetched in {round(timer() - start, 3)}s')
 
     # Fill spreadsheet with fetched data.
-    spreadsheet_body = {
-        # TODO: Add desired entries to the request body.
-    }
+    start = timer()
+    values = []
+    for post in data['reddit']:
+        values.append([post['title']])
+        values.append([post['reddit_url']])
+        values.append([post['link_url']])
+        values.append([])
+    print(f'list with all values created in {round(timer() - start, 3)}s')
 
     # Create new spreadsheet.
-    # request = service.spreadsheets().create(body=spreadsheet_body)
-    # response = request.execute()
+    start = timer()
+    sheet = Spreadsheet(service, f'everyday_sheet{date.today()}')
+    print(f'new sheet created in {round(timer() - start, 3)}s')
 
-    # TODO: Change code below to process the `response` dict:
-    # pprint(response)
+    # Insert data into spreadsheet.
+    start = timer()
+    sheet.insert_data(values, 'A1:Z200', 'USER_ENTERED')
+    print(f'data inserted into a sheet in {round(timer() - start, 3)}s')
+
+    # Adjust columns size.
+    sheet.set_col_size()
+
+    print(f'elapsed time since start {round(timer() - main_start, 3)}s')

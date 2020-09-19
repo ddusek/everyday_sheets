@@ -18,4 +18,4 @@ class Fetch():
 
         self.data['reddit'] = data_reddit
 
-        return data
+        return self.data

@@ -17,13 +17,10 @@ class Reddit():
                     .top(time_filter=r_input['time_filter'], limit=r_input['limit'])
 
             for post in posts:
-                print(dir(post))
                 self.results.append(
                     {
                         'title': post.title,
                         'link_url': post.url,
                         'reddit_url': 'https://reddit.com'+post.permalink
                     })
-        for data in self.results:
-            print(data)
         return self.results
