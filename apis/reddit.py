@@ -9,6 +9,8 @@ class Reddit():
         self.results = []
 
     def reddit_data(self):
+        """Get data from api and return it in dictionary.
+        """
         reddit = praw.Reddit(client_id="XHJ8ldlctO3DUQ", client_secret="FDzafh2IKbeRCZDN5vB4Sp4Kt9c",
                              user_agent="USERAGENT")
 
