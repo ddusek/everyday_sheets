@@ -41,11 +41,25 @@ class Spreadsheet():
             self.data[key].append([value['price']])
             self.data[key].append([])
 
+    def _convert_newsapi(self, values, key):
+        """Convert newsapi data to list.
+        """
+        self.data[key] = []
+        self.data[key].append([key])
+        for value in values:
+            self.data[key].append([value['title']])
+            self.data[key].append([value['url']])
+            self.data[key].append([value['time_published']])
+            self.data[key].append([])
+
     def convert_data(self, data):
         """Convert all data to list.
         """
-        self._convert_reddit(data[DATA_KEYS[0]], 'reddit')
-        self._convert_coinpaprika(data[DATA_KEYS[1]], 'crypto')
+        self._convert_reddit(data[DATA_KEYS[0]], DATA_KEYS[0])
+        self._convert_newsapi(data[DATA_KEYS[1]], DATA_KEYS[1])
+        self._convert_newsapi(data[DATA_KEYS[2]], DATA_KEYS[2])
+        self._convert_newsapi(data[DATA_KEYS[3]], DATA_KEYS[3])
+        self._convert_coinpaprika(data[DATA_KEYS[4]], DATA_KEYS[4])
 
     def insert_data(self):
         """Insert data into a spreadsheet.

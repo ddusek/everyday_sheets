@@ -5,6 +5,8 @@ from googleapiclient.discovery import build
 from creds import Creds
 from fetch import Fetch
 from spreadsheets import Spreadsheet
+from variables import CONSOLE_COLOR, CONSOLE_ENDC
+
 
 if __name__ == '__main__':
     main_start = timer()
@@ -16,26 +18,28 @@ if __name__ == '__main__':
 
     # Create new spreadsheet.
     start = timer()
+    print(CONSOLE_COLOR + 'creating spreadsheet...')
     sheet = Spreadsheet(service, f'everyday_sheet{date.today()}')
     print(f'new sheet created in {round(timer() - start, 3)}s')
 
     # Fetch data from all data sources defined in json file.
-    fetcher = Fetch('api_inputs.json')
+    fetcher = Fetch('reddit_inputs.json')
     start = timer()
+    print('fetching data...')
     data = fetcher.fetch_all()
     print(f'data fetched in {round(timer() - start, 3)}s')
 
     # Convert data into format needed for spreadsheet.
-    start = timer()
     sheet.convert_data(data)
-    print(f'list with all values created in {round(timer() - start, 3)}s')
 
     # Insert data into spreadsheet.
     start = timer()
+    print('inserting data into spreadsheet...')
     sheet.insert_data()
     print(f'data inserted into a sheet in {round(timer() - start, 3)}s')
 
     # Adjust columns size.
     sheet.set_col_size()
 
-    print(f'elapsed time since start {round(timer() - main_start, 3)}s')
+    print('done')
+    print(f'elapsed time since start {round(timer() - main_start, 3)}s' + CONSOLE_ENDC)

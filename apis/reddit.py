@@ -1,4 +1,5 @@
 import praw
+from variables import REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET
 
 
 class Reddit():
@@ -6,23 +7,22 @@ class Reddit():
     """
     def __init__(self, inputs):
         self.inputs = inputs
-        self.results = []
+        self.user_agent = 'USERAGENT'
 
-    def reddit_data(self):
+    def get_data(self):
         """Get data from api and return it in dictionary.
         """
-        reddit = praw.Reddit(client_id="XHJ8ldlctO3DUQ", client_secret="FDzafh2IKbeRCZDN5vB4Sp4Kt9c",
-                             user_agent="USERAGENT")
-
+        reddit = praw.Reddit(client_id=REDDIT_CLIENT_ID, client_secret=REDDIT_CLIENT_SECRET,
+                             user_agent=self.user_agent)
+        results = []
         for r_input in self.inputs['subreddits']:
             posts = reddit.subreddit(r_input['subreddit']) \
                     .top(time_filter=r_input['time_filter'], limit=r_input['limit'])
 
             for post in posts:
-                self.results.append(
-                    {
+                results.append({
                         'title': post.title,
                         'link_url': post.url,
                         'reddit_url': 'https://reddit.com'+post.permalink
                     })
-        return self.results
+        return results
