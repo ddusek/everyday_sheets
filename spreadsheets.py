@@ -29,6 +29,7 @@ class Spreadsheet():
             self.data[key].append([value['title']])
             self.data[key].append([value['reddit_url']])
             self.data[key].append([value['link_url']])
+            self.data[key].append([value['rating']])
             self.data[key].append([])
 
     def _convert_coinpaprika(self, values, key):
