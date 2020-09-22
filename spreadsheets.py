@@ -1,3 +1,4 @@
+import json
 from variables import DATA_KEYS
 
 
@@ -60,7 +61,9 @@ class Spreadsheet():
         self._convert_newsapi(data[DATA_KEYS[1]], DATA_KEYS[1])
         self._convert_newsapi(data[DATA_KEYS[2]], DATA_KEYS[2])
         self._convert_newsapi(data[DATA_KEYS[3]], DATA_KEYS[3])
-        self._convert_coinpaprika(data[DATA_KEYS[4]], DATA_KEYS[4])
+        self._convert_newsapi(data[DATA_KEYS[4]], DATA_KEYS[4])
+        self._convert_newsapi(data[DATA_KEYS[5]], DATA_KEYS[5])
+        self._convert_coinpaprika(data[DATA_KEYS[6]], DATA_KEYS[6])
 
     def insert_data(self):
         """Insert data into a spreadsheet.
@@ -83,17 +86,5 @@ class Spreadsheet():
     def set_col_size(self):
         """Set columns size to fit content.
         """
-        request = {
-            "requests": [
-                {
-                    "autoResizeDimensions": {
-                        "dimensions": {
-                            "dimension": "COLUMNS",
-                            "startIndex": 0,
-                            "endIndex": 20
-                        }
-                    }
-                }
-            ]
-        }
+        request = json.loads(open('sheets_request.json', 'r').read())
         self.service.spreadsheets().batchUpdate(spreadsheetId=self.sheet_id, body=request).execute()

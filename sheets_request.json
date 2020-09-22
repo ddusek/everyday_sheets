@@ -1,0 +1,78 @@
+{
+    "requests": [
+        {
+            "autoResizeDimensions": {
+                "dimensions": {
+                    "dimension": "COLUMNS",
+                    "startIndex": 0,
+                    "endIndex": 20
+                }
+            }
+        },
+        {
+            "updateDimensionProperties": {
+                "range": {
+                    "dimension": "COLUMNS",
+                    "startIndex": 0,
+                    "endIndex": 1
+                },
+                "properties": {
+                    "pixelSize": 800
+                },
+                "fields": "pixelSize"
+            }
+        },
+        {
+            "updateDimensionProperties": {
+                "range": {
+                    "dimension": "COLUMNS",
+                    "startIndex": 2,
+                    "endIndex": 3
+                },
+                "properties": {
+                    "pixelSize": 800
+                },
+                "fields": "pixelSize"
+            }
+        },
+        {
+            "updateDimensionProperties": {
+                "range": {
+                    "dimension": "COLUMNS",
+                    "startIndex": 4,
+                    "endIndex": 5
+                },
+                "properties": {
+                    "pixelSize": 800
+                },
+                "fields": "pixelSize"
+            }
+        },
+        {
+            "updateDimensionProperties": {
+                "range": {
+                    "dimension": "COLUMNS",
+                    "startIndex": 6,
+                    "endIndex": 7
+                },
+                "properties": {
+                    "pixelSize": 800
+                },
+                "fields": "pixelSize"
+            }
+        },
+        {
+            "updateDimensionProperties": {
+                "range": {
+                    "dimension": "COLUMNS",
+                    "startIndex": 8,
+                    "endIndex": 9
+                },
+                "properties": {
+                    "pixelSize": 800
+                },
+                "fields": "pixelSize"
+            }
+        }
+    ]
+}
