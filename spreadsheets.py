@@ -68,7 +68,7 @@ class Spreadsheet():
     def insert_data(self):
         """Insert data into a spreadsheet.
         """
-        cell_range = 'A1:Z200'
+        cell_range = 'A1:Z1000'
         value_input_option = 'USER_ENTERED'
         for source in DATA_KEYS:
             body = {
