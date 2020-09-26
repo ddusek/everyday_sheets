@@ -1,4 +1,5 @@
 import json
+import asyncio
 from apis.reddit import Reddit
 from apis.coinpaprika import CoinPaprika
 from apis.newsapi import NewsApi
@@ -17,15 +18,19 @@ class Fetch():
         """
         with open(self.filepath, 'r') as file:
             data = file.read()
-        obj = json.loads(data)
+        reddit_input = json.loads(data)
 
-        data_reddit = Reddit(obj['reddit']).get_data()
-        data_newsapi_cz = NewsApi().get_data('top-headlines', 'country', 'cz')
-        data_newsapi_general = NewsApi().get_data('top-headlines', 'sources', NEWSAPI_SOURCES_GENERAL)
-        data_newsapi_technology = NewsApi().get_data('top-headlines', 'sources', NEWSAPI_SOURCES_TECHNOLOGY)
-        data_newsapi_science = NewsApi().get_data('top-headlines', 'category', 'science')
-        data_newsapi_gaming = NewsApi().get_data('top-headlines', 'sources', NEWSAPI_SOURCES_GAMING)
-        data_coinpaprika = CoinPaprika().get_data()
+        reddit = Reddit(reddit_input['reddit'])
+        news_api = NewsApi()
+        coin_paprika = CoinPaprika()
+
+        data_reddit = asyncio.run(reddit.get_data())
+        data_newsapi_cz = asyncio.run(news_api.get_data('top-headlines', 'country', 'cz'))
+        data_newsapi_general = asyncio.run(news_api.get_data('top-headlines', 'sources', NEWSAPI_SOURCES_GENERAL))
+        data_newsapi_technology = asyncio.run(news_api.get_data('top-headlines', 'sources', NEWSAPI_SOURCES_TECHNOLOGY))
+        data_newsapi_science = asyncio.run(news_api.get_data('top-headlines', 'category', 'science'))
+        data_newsapi_gaming = asyncio.run(news_api.get_data('top-headlines', 'sources', NEWSAPI_SOURCES_GAMING))
+        data_coinpaprika = asyncio.run(coin_paprika.get_data())
 
         self.data[DATA_KEYS[0]] = data_reddit
         self.data[DATA_KEYS[1]] = data_newsapi_cz

@@ -1,8 +1,11 @@
 import json
+import asyncio
 from variables import DATA_KEYS
 
 
 class Spreadsheet():
+    """Class for interaction with Google sheets api
+    """
     def __init__(self, service, title):
         self.service = service
         self.title = title
@@ -21,7 +24,7 @@ class Spreadsheet():
         response = spreadsheet.execute()
         return response.get('spreadsheetId')
 
-    def _convert_reddit(self, values, key):
+    async def _convert_reddit(self, values, key):
         """Convert Reddit data to list.
         """
         self.data[key] = []
@@ -33,7 +36,7 @@ class Spreadsheet():
             self.data[key].append([value['rating']])
             self.data[key].append([])
 
-    def _convert_coinpaprika(self, values, key):
+    async def _convert_coinpaprika(self, values, key):
         """Convert Coinpaprika data to list.
         """
         self.data[key] = []
@@ -43,7 +46,7 @@ class Spreadsheet():
             self.data[key].append([value['price']])
             self.data[key].append([])
 
-    def _convert_newsapi(self, values, key):
+    async def _convert_newsapi(self, values, key):
         """Convert newsapi data to list.
         """
         self.data[key] = []
@@ -57,13 +60,13 @@ class Spreadsheet():
     def convert_data(self, data):
         """Convert all data to list.
         """
-        self._convert_reddit(data[DATA_KEYS[0]], DATA_KEYS[0])
-        self._convert_newsapi(data[DATA_KEYS[1]], DATA_KEYS[1])
-        self._convert_newsapi(data[DATA_KEYS[2]], DATA_KEYS[2])
-        self._convert_newsapi(data[DATA_KEYS[3]], DATA_KEYS[3])
-        self._convert_newsapi(data[DATA_KEYS[4]], DATA_KEYS[4])
-        self._convert_newsapi(data[DATA_KEYS[5]], DATA_KEYS[5])
-        self._convert_coinpaprika(data[DATA_KEYS[6]], DATA_KEYS[6])
+        asyncio.run(self._convert_reddit(data[DATA_KEYS[0]], DATA_KEYS[0]))
+        asyncio.run(self._convert_newsapi(data[DATA_KEYS[1]], DATA_KEYS[1]))
+        asyncio.run(self._convert_newsapi(data[DATA_KEYS[2]], DATA_KEYS[2]))
+        asyncio.run(self._convert_newsapi(data[DATA_KEYS[3]], DATA_KEYS[3]))
+        asyncio.run(self._convert_newsapi(data[DATA_KEYS[4]], DATA_KEYS[4]))
+        asyncio.run(self._convert_newsapi(data[DATA_KEYS[5]], DATA_KEYS[5]))
+        asyncio.run(self._convert_coinpaprika(data[DATA_KEYS[6]], DATA_KEYS[6]))
 
     def insert_data(self):
         """Insert data into a spreadsheet.

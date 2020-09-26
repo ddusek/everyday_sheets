@@ -9,7 +9,7 @@ class CoinPaprika():
         self.api_url = 'https://api.coinpaprika.com/v1/'
         self.bitcoin_id = 'btc-bitcoin'
 
-    def get_data(self):
+    async def get_data(self):
         """Get current price of btc.
         """
         url = f'{self.api_url}coins/btc-bitcoin/ohlcv/today'

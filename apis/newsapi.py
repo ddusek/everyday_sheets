@@ -9,7 +9,7 @@ class NewsApi():
     def __init__(self):
         self.api_url = 'https://newsapi.org/v2/'
 
-    def get_data(self, endpoint, parameter_key, parameter_value):
+    async def get_data(self, endpoint, parameter_key, parameter_value):
         """Get news according to parameters.
 
         :param endpoint: api endpoint for example: "top-headlines"
