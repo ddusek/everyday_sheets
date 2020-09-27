@@ -1,5 +1,5 @@
 # everyday_data
-Gets data from some APIs and save them into google sheets.
+Telegram bot to get data from some APIs, save them into google sheets and send url of the sheets to the user.
 ## setup
 File variables.py is needed to be created, where should be saved your api keys to run this script.  
 You can copy example file variables_example.py, add api keys and change stuff as you want.  

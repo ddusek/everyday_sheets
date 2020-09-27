@@ -1,5 +1,6 @@
 # pylint: disable=unused-argument, broad-except, invalid-name
 from telegram.ext import Updater, CommandHandler
+from timeit import default_timer as timer
 from variables import TELEGRAM_BOT_TOKEN, EMOJI_SCREAM, EMOJI_SLEEP
 from execute import execute
 
@@ -20,8 +21,9 @@ def fetch(update, context):
     message = f'fetching data, this should take few seconds... {EMOJI_SLEEP*3}'
     update.message.reply_text(message)
     try:
+        start = timer()
         url = execute()
-        message = f'data fetched. here is url to spreadsheet: {url}'
+        message = f'data fetched in {round(timer() - start, 1)}s. here is url to spreadsheet: {url}'
         update.message.reply_text(message)
     except Exception as e:
         message = f'there was some error {EMOJI_SCREAM*3}\nerror message: {e}'

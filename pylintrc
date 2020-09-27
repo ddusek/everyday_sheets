@@ -3,4 +3,4 @@ ignored-modules = googleapiclient.discovery, variables
 disable = missing-module-docstring
 
 [FORMAT]
-max-line-length=240
+max-line-length=120

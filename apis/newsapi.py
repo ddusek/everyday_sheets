@@ -13,10 +13,16 @@ class NewsApi():
         """Get news according to parameters.
 
         :param endpoint: api endpoint for example: "top-headlines"
-        :param parameter_key: parameter key for example: "sources"
-        :param parameter_value: parameter value for example "abc-news,time"
+        :param parameter_key: parameter key for example: "sources". Can also be list of keys.
+        :param parameter_value: parameter value for example "abc-news,time". Can also be list of values.
         """
-        url = f'{self.api_url}{endpoint}?apiKey={NEWSAPI_KEY}&{parameter_key}={parameter_value}'
+        parameters = f'apiKey={NEWSAPI_KEY}'
+        if isinstance(parameter_key, list) and isinstance(parameter_value, list):
+            for key, value in zip(parameter_key, parameter_value):
+                parameters += f'&{key}={value}'
+        else:
+            parameters += f'&{parameter_key}={parameter_value}'
+        url = f'{self.api_url}{endpoint}?{parameters}'
         response = requests.get(url)
         results = []
         articles = json.loads(response.text)['articles']

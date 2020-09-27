@@ -28,7 +28,8 @@ class Fetch():
         data_newsapi_cz = asyncio.run(news_api.get_data('top-headlines', 'country', 'cz'))
         data_newsapi_general = asyncio.run(news_api.get_data('top-headlines', 'sources', NEWSAPI_SOURCES_GENERAL))
         data_newsapi_technology = asyncio.run(news_api.get_data('top-headlines', 'sources', NEWSAPI_SOURCES_TECHNOLOGY))
-        data_newsapi_science = asyncio.run(news_api.get_data('top-headlines', 'category', 'science'))
+        data_newsapi_science = asyncio.run(news_api.get_data('top-headlines', ['category', 'country'],
+                                                                              ['science', 'us']))
         data_newsapi_gaming = asyncio.run(news_api.get_data('top-headlines', 'sources', NEWSAPI_SOURCES_GAMING))
         data_coinpaprika = asyncio.run(coin_paprika.get_data())
 
