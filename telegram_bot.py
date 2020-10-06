@@ -1,8 +1,8 @@
 # pylint: disable=unused-argument, broad-except, invalid-name
-from telegram.ext import Updater, CommandHandler
 from timeit import default_timer as timer
+from telegram.ext import Updater, CommandHandler
 from variables import TELEGRAM_BOT_TOKEN, EMOJI_SCREAM, EMOJI_SLEEP
-from execute import execute
+from google_sheets.execute import execute
 
 
 def _help(update, context):

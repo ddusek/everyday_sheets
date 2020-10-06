@@ -1,6 +1,10 @@
+import os
 import json
 import asyncio
 from variables import DATA_KEYS
+
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
 
 class Spreadsheet():
@@ -89,5 +93,5 @@ class Spreadsheet():
     def set_col_size(self):
         """Set columns size to fit content.
         """
-        request = json.loads(open('sheets_request.json', 'r').read())
+        request = json.loads(open(os.path.join(__location__, 'sheets_request.json'), 'r').read())
         self.service.spreadsheets().batchUpdate(spreadsheetId=self.sheet_id, body=request).execute()
