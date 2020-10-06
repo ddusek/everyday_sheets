@@ -1,15 +1,16 @@
 import json
 import asyncio
-from apis.reddit import Reddit
-from apis.coinpaprika import CoinPaprika
-from apis.newsapi import NewsApi
+from data_apis.reddit import Reddit
+from data_apis.coinpaprika import CoinPaprika
+from data_apis.newsapi import NewsApi
+from data_apis.newsapi_parameters import FIXED_PARAMS
 from variables import DATA_KEYS, NEWSAPI_SOURCES_GENERAL, NEWSAPI_SOURCES_TECHNOLOGY, NEWSAPI_SOURCES_GAMING
 
 
 class Fetch():
     """Fetch data from all apis.
     """
-    def __init__(self, path):
+    def __init__(self, path=''):
         self.filepath = path
         self.data = {}
 
@@ -42,3 +43,29 @@ class Fetch():
         self.data[DATA_KEYS[6]] = data_coinpaprika
 
         return self.data
+
+    def fetch_reddit(self):
+        """Fetch reddit data.
+        """
+        with open(self.filepath, 'r') as file:
+            data = file.read()
+        reddit_input = json.loads(data)
+        reddit = Reddit(reddit_input['reddit'])
+        data = asyncio.run(reddit.get_data())
+        return data
+
+    def fetch_coinpaprika(self):
+        """Fetch coinpaprika data.
+        """
+        coin_paprika = CoinPaprika()
+        data = asyncio.run(coin_paprika.get_data())
+        return data
+
+    def fetch_newsapi(self, topic):
+        """Fetch newsapi data according to topic in parameter.
+        """
+        newsapi = NewsApi()
+        if topic not in FIXED_PARAMS:
+            return {'error': f'topic {topic} not not'}
+        data = asyncio.run(newsapi.get_data(*FIXED_PARAMS[topic]))
+        return data
