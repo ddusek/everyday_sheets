@@ -2,10 +2,10 @@ from __future__ import print_function
 from timeit import default_timer as timer
 from datetime import datetime
 from googleapiclient.discovery import build
-from creds import Creds
 from fetch import Fetch
-from spreadsheets import Spreadsheet
 from variables import CONSOLE_COLOR, CONSOLE_ENDC, CONSOLE_COLOR_START_DONE
+from .spreadsheets import Spreadsheet
+from .creds import Creds
 
 
 def execute():
