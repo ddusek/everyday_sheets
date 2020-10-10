@@ -2,11 +2,10 @@
   "name": "everyday_data",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.prod.js",
-    "dev": "webpack-dev-server --open --config webpack.dev.js"
+    "build": "vue-cli-service build",
+    "dev": "vue-cli-service serve"
   },
   "author": "",
   "license": "ISC",
@@ -14,14 +13,14 @@
     "vue": "^2.6.12"
   },
   "devDependencies": {
-    "clean-webpack-plugin": "^3.0.0",
+    "@vue/cli-service": "^4.5.7",
     "css-loader": "^4.3.0",
     "file-loader": "^6.1.0",
-    "html-webpack-plugin": "^4.5.0",
+    "sass": "^1.27.0",
+    "sass-loader": "^10.0.3",
     "style-loader": "^1.3.0",
-    "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0",
-    "webpack-merge": "^5.2.0"
+    "vue-cli": "^2.9.6",
+    "vue-loader": "^15.9.3",
+    "vue-template-compiler": "^2.6.12"
   }
 }

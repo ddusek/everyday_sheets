@@ -1,0 +1,29 @@
+@import './_variables';
+
+@font-face {
+    font-family: 'Vinson';
+    src: url('../fonts/VInson-Regular.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Vinson-Bold';
+    src: url('../fonts/Vinson-Bold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: bold;
+}
+@font-face {
+    font-family: 'Vinson-Light';
+    src: url('../fonts/Vinson-Light.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+html * {
+    font-family: Vinson;
+}
+
+.hello {
+    color: red;
+    font-family: 'Vinson';
+}
