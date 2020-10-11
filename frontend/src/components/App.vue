@@ -1,16 +1,21 @@
 <template>
   <div id="app">
-    <div class="hello">
-      <h1>nice</h1>
+    <header>
+      <Header/>
+    </header>
+    <div id="main">
+      <FeedBlock/>
     </div>
-    <hr>
-    <h2>nice2</h2>
   </div>
 </template>
 
 <script>
-    import Layout from './Layout.vue'
+    import Header from './Header.vue';
+    import FeedBlock from './FeedBlock.vue';
     export default {
-    components: { Layout }
+      components: {
+        Header,
+        FeedBlock 
+      }
     }
 </script>

@@ -1,0 +1,28 @@
+@import './_variables';
+
+.header {    
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    .title {
+        width: 250px;
+    }
+
+    .menu {
+        display: flex;
+        padding-inline-start: 0;
+        width: 100%;
+        align-content: flex-end;
+        
+    }
+
+    .item {
+        margin: 0 30px;
+        list-style-type: none;
+
+        a {
+            color: $base-text-color;
+        }
+    }
+}

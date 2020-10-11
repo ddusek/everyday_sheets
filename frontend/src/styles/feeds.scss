@@ -1,0 +1,52 @@
+@import './variables';
+
+.feed-block {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: $feed-header-color;
+    border-radius: 25px;
+
+    .feed-header {
+        display: flex;
+        justify-content: center;
+        margin: 5px;
+        width: 100%;
+        
+    }
+    
+    .container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        background-color: $feed-container-color;
+        width: 100%;
+        border-radius: 0 0 25px 25px;
+        
+    
+        .feed {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: center;
+            background-color: $feed-color;
+            margin: 10px;
+            width: 98%;
+            height: 60px;
+            border-radius: 25px;
+
+            .img {
+                display: flex;
+                align-items: center;
+                width: 100px;
+                height: 100%;
+                margin: 5px 5px 5px 10px;
+            }
+
+            p {
+                margin: 5px;
+                width: 85%;
+            }
+        }
+    }
+}
