@@ -24,8 +24,12 @@
 html {
     font-family: Vinson, Arial, Helvetica, sans-serif;
     height: 100%;
-    background-color: rgb(55, 55, 55);
+    background-color: rgb(85, 85, 85);
     color: $base-text-color;
+}
+
+body {
+    margin: 0;
 }
 
 a {

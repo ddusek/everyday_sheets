@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = {
     pages: {
         index: {
@@ -7,4 +5,6 @@ module.exports = {
             template: 'src/index.html',
         }
     },
-  }
+
+    lintOnSave: false
+}

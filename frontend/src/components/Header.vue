@@ -1,28 +1,26 @@
 <template>
-    <div class="header">
+    <header>
         <h1 class="title">Header here</h1>
-        <ul class=menu>
-            <li class=item
-                v-for="item in menuItems"
-                :key="item.text">
-                <a :href="'#'+item.text">
+        <ul class="menu">
+            <li class="item" v-for="item in menuItems" :key="item.link">
+                <a :href="'#' + item.link">
                     {{ item.text }}
                 </a>
             </li>
         </ul>
-    </div>
+    </header>
 </template>
 
 <script>
 export default {
-    data: function() {
+    data() {
         return {
             menuItems: [
-                { text: 'item1' },
-                { text: 'item2' },
-                { text: 'item3' }
-            ]
-        }
-    }
-}
+                { text: 'item1', link: 'block1' },
+                { text: 'item2', link: 'block2' },
+                { text: 'item3', link: 'block3' },
+            ],
+        };
+    },
+};
 </script>

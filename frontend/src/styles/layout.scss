@@ -1,9 +1,13 @@
 @import './_variables';
 
-.header {    
+
+header {    
     display: flex;
     align-items: center;
     width: 100%;
+    margin-bottom: 20px;
+    background-color: $feed-header-color;
+
 
     .title {
         width: 250px;
@@ -25,4 +29,8 @@
             color: $base-text-color;
         }
     }
+}
+
+#main {
+    margin: 12px;
 }
