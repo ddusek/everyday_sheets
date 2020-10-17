@@ -1,16 +1,16 @@
 import axios from 'axios';
 
-const fetchNews = async () => {
+const fetchNews = () => {
     const APIUrl = 'http://localhost:5000';
     axios.defaults.xsrfCookieName = 'csrftoken';
     axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN';
     const fetchReddit = () => {
-        axios
+        return axios
             .get(`${APIUrl}/reddit`)
-            .then(function (response) {
-                return response;
+            .then((response) => {
+                return response.data;
             })
-            .catch(function (error) {
+            .catch((error) => {
                 console.log(error);
                 return null;
             });

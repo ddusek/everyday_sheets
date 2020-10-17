@@ -5,29 +5,31 @@ const state = () => ({
 });
 
 const getters = {
-    feeds: (state) => {
+    redditFeeds: (state) => {
         return state.items.map((i) => {
             return {
                 header: i.title,
-                additionalInfo: i.rating,
                 url1: i.link_url,
-                ur2: i.link_url,
+                url2: i.reddit_url,
+                additionalInfo: i.rating,
             };
         });
     },
 };
 
 const actions = {
-    getNews({ commit }) {
-        commit('getNewsFromApi');
+    async getNewsAsync({ commit }) {
+        const data = news.fetchNews();
+        commit('setNewsState', await data);
     },
 };
 
 const mutations = {
-    getNewsFromApi(state) {
-        state.feeds = news.fetchNews();
+    setNewsState(state, data) {
+        state.items = data;
     },
 };
+
 export default {
     namespaced: true,
     state,
