@@ -1,32 +1,35 @@
-import news from '../../api/news';
+import redditApi from '../../api/reddit';
+import newsApi from '../../api/newsapi';
+import coinpaprikaApi from '../../api/coinpaprika';
 
 const state = () => ({
     items: [],
 });
 
-const getters = {
-    redditFeeds: (state) => {
-        return state.items.map((i) => {
-            return {
-                header: i.title,
-                url1: i.link_url,
-                url2: i.reddit_url,
-                additionalInfo: i.rating,
-            };
-        });
-    },
-};
+const getters = {};
 
 const actions = {
-    async getNewsAsync({ commit }) {
-        const data = news.fetchNews();
-        commit('setNewsState', await data);
+    async getFeeds({ commit }, payload) {
+        let data = [];
+        switch (payload.category) {
+            case 'reddit':
+                data = await redditApi.fetch();
+                break;
+            case 'newsapi':
+                data = await newsApi.fetch(payload.key);
+                break;
+            case 'coinpaprika':
+                data = await coinpaprikaApi.fetch();
+                break;
+        }
+        commit('setItems', data);
+        return data;
     },
 };
 
 const mutations = {
-    setNewsState(state, data) {
-        state.items = data;
+    setItems(state, payload) {
+        state.items = payload;
     },
 };
 

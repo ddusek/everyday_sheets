@@ -3,8 +3,8 @@ module.exports = {
         index: {
             entry: './src/main.js',
             template: 'src/index.html',
-        }
+        },
     },
 
-    lintOnSave: false
-}
+    lintOnSave: false,
+};
