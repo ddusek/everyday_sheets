@@ -22,6 +22,8 @@ class NewsApi():
                 parameters += f'&{key}={value}'
         else:
             parameters += f'&{parameter_key}={parameter_value}'
+        parameters += '&pageSize=10'
+
         url = f'{self.api_url}{endpoint}?{parameters}'
         response = requests.get(url)
         results = []
@@ -32,6 +34,7 @@ class NewsApi():
             results.append({
                 'title': article['title'],
                 'url': article['url'],
-                'time_published': article['publishedAt']
+                'time_published': article['publishedAt'],
+                'image': article['urlToImage']
             })
         return results

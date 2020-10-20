@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <div v-for="feed in feedsData" :key="feed.header" class="feed">
-            <a class="img" :href="feed.url2">
-                <img :src="feed.image" :alt="feed.alt" />
+            <a class="image-container" :href="feed.url2">
+                <img class="img" :src="feed.image" :alt="feed.alt" />
             </a>
             <div class="content">
                 <p>
@@ -16,6 +16,7 @@
 
 <script>
 import { mapActions } from 'vuex';
+import reddit_logo from '../media/reddit_logo.jpeg';
 
 export default {
     props: ['category', 'categoryKey'],
@@ -37,6 +38,7 @@ export default {
                                         url1: i.link_url,
                                         url2: i.reddit_url,
                                         additionalInfo: i.rating,
+                                        image: i.image != null ? i.image : reddit_logo,
                                     };
                                 });
                                 break;
@@ -47,6 +49,7 @@ export default {
                                         url1: i.url,
                                         url2: i.url,
                                         additionalInfo: i.time_published,
+                                        image: i.image,
                                     };
                                 });
                                 break;

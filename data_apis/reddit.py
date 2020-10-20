@@ -24,6 +24,6 @@ class Reddit():
                     'title': post.title,
                     'link_url': post.url,
                     'reddit_url': 'https://reddit.com'+post.permalink,
-                    'rating': f'ups:{post.ups} downs:{post.downs} ratio:{post.upvote_ratio}'
+                    'rating': f'ups:{post.ups} ratio:{post.upvote_ratio}',
                     })
         return results
